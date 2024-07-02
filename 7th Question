@@ -1,0 +1,63 @@
+/*In one step, you can take one card from the beginning or from the end of the row. You have to take exactly k cards.
+ 
+Your score is the sum of the points of the cards you have taken.
+ 
+Given the integer array cardPoints and the integer k, return the maximum score you can obtain.
+ 
+Example 1:
+Input: cardPoints = [1,2,3,4,5,6,1], k = 3
+Output: 12
+ 
+Example 2:
+Input: cardPoints = [2,2,2], k = 2
+Output: 4
+ 
+Example 3:
+Input: cardPoints = [9,7,7,9,7,7,9], k = 7
+Output: 55*/
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n,k,t=1;
+    cout<<"Enter the number of test case: ";
+    cin>>t;
+    while(t){
+    cout<<endl;
+    cout<<"Enter the total number of cards:";
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cout<<"Enter the card "<<i+1<<" points: ";
+        cin>>a[i]; 
+    }
+    cout<<"Enter the number of cards picked: ";
+    cin>>k;
+    int lo=0;
+    int hi=n-1;
+    int sum=0;
+    for(int i=0;i<k;i++){
+            if(a[lo]>a[hi]){
+                sum+=a[lo];
+                lo++;
+            }
+            else if(a[lo]<a[hi]){
+                sum+=a[hi];
+                hi--;
+            }
+            else{
+                if(a[lo+1]>a[hi-1]){
+                    sum+=a[lo];
+                    lo++;
+                }
+                else{
+                    sum+=a[hi];
+                    hi--;
+                }
+            }
+    }
+    cout<<"The maximum score obtained is: "<<sum<<endl;
+    t--;
+    }
+}
